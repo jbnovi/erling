@@ -1,0 +1,6 @@
+/* Story is now built with .cta-component pairs (see cards.css) */
+.story { position: relative; }
+
+.story .cta-component + .cta-component {
+  border-top: 1px solid var(--line);
+}

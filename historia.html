@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mi Historia &mdash; Erlin Gonzalez</title>
+  <meta name="description" content="La trayectoria de Erlin Gonzalez: de cero a construir dos empresas y liderar estrategias de marketing de alto impacto en Ecuador." />
+  <meta name="author" content="Erlin Gonzalez" />
+  <meta name="robots" content="index, follow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/main.css" />
+  <style>
+    /* ── Historia page extras ── */
+    .historia-hero {
+      padding-block: clamp(6rem, 12vw, 12rem) clamp(3rem, 5vw, 5rem);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .historia-hero .kicker { margin-bottom: 1.2rem; }
+
+    .historia-hero-headline {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: clamp(4.5rem, 10vw, 11rem);
+      text-transform: uppercase;
+      line-height: 0.85;
+      letter-spacing: 0.01em;
+      color: var(--text);
+      max-width: 14ch;
+    }
+
+    .historia-hero-sub {
+      color: var(--muted);
+      font-size: clamp(1rem, 1.3vw, 1.15rem);
+      line-height: 1.65;
+      max-width: 48ch;
+      margin-top: 2rem;
+    }
+
+    .historia-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-bottom: 3rem;
+      transition: color 0.25s ease;
+    }
+
+    .historia-back::before {
+      content: "\2190";
+      font-size: 1rem;
+    }
+
+    .historia-back:hover { color: var(--accent-2); }
+
+    /* Timeline chapters */
+    .historia-chapters {
+      width: 90%;
+      max-width: var(--max);
+      margin: 0 auto;
+      padding-block: clamp(4rem, 8vw, 8rem);
+    }
+
+    .historia-chapter {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(2.5rem, 5vw, 6rem);
+      align-items: center;
+      padding-block: clamp(4rem, 7vw, 7rem);
+      border-top: 1px solid var(--line);
+    }
+
+    .historia-chapter:first-child { border-top: none; }
+    .historia-chapter.flip { direction: rtl; }
+    .historia-chapter.flip > * { direction: ltr; }
+
+    /* Two-image stack (same as cta-card) */
+    .historia-imgs {
+      position: relative;
+      aspect-ratio: 4 / 5;
+    }
+
+    .historia-img {
+      position: absolute;
+      overflow: hidden;
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(255,255,255,0.04);
+      box-shadow: var(--shadow-card);
+    }
+
+    .historia-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 1.2s ease;
+    }
+
+    .historia-img:hover img { transform: scale(1.04); }
+
+    .historia-img._01 {
+      top: 0; left: 0;
+      width: 78%; height: 88%;
+      z-index: 1;
+    }
+
+    .historia-img._02 {
+      bottom: 0; right: 0;
+      width: 58%; height: 60%;
+      z-index: 2;
+      border: 2px solid rgba(255,255,255,0.06);
+    }
+
+    /* Text block */
+    .historia-text {
+      display: flex;
+      flex-direction: column;
+      gap: 1.4rem;
+    }
+
+    .historia-num {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: 0.74rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .historia-text h2 {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: clamp(2.8rem, 5vw, 5.2rem);
+      text-transform: uppercase;
+      font-weight: 600;
+      line-height: 0.92;
+      letter-spacing: 0.01em;
+    }
+
+    .historia-text p {
+      color: var(--muted);
+      font-size: clamp(1rem, 1.2vw, 1.1rem);
+      line-height: 1.7;
+      max-width: 52ch;
+    }
+
+    /* CTA strip */
+    .historia-cta-strip {
+      width: 90%;
+      max-width: var(--max);
+      margin: 0 auto;
+      padding-block: clamp(4rem, 7vw, 7rem);
+      border-top: 1px solid var(--line);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+
+    .historia-cta-strip h3 {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: clamp(2rem, 4vw, 4rem);
+      text-transform: uppercase;
+      line-height: 0.9;
+      max-width: 20ch;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .historia-chapter {
+        grid-template-columns: 1fr;
+        gap: 2.4rem;
+      }
+
+      .historia-chapter.flip { direction: ltr; }
+
+      .historia-imgs { max-width: 400px; margin: 0 auto; }
+
+      .historia-hero-headline { font-size: clamp(3.5rem, 14vw, 6rem); }
+    }
+  </style>
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <a href="index.html" class="logo">Erlin Gonzalez</a>
+    <nav class="main-nav" aria-label="Primary">
+      <a href="index.html#story">Historia</a>
+      <a href="index.html#companies">Empresas</a>
+      <a href="index.html#services">Servicios</a>
+      <a href="index.html#media">Videos</a>
+      <a href="index.html#contact">Contacto</a>
+    </nav>
+    <div class="header-actions">
+      <a class="btn btn-primary" href="https://wa.me/0000000000?text=Hola%20Erlin%2C%20quiero%20informacion%20sobre%20tus%20servicios" target="_blank" rel="noopener"><svg class="brand-icon" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor"><path d="M11.97 2A10 10 0 0 0 2 12c0 1.77.46 3.44 1.27 4.88L2 22l5.24-1.2A9.95 9.95 0 0 0 11.97 22A10 10 0 0 0 22 12A10 10 0 0 0 11.97 2M17.3 15.65c-.2.52-1.07 1-1.52 1.05-.4.04-.84.14-2.58-.58-2.1-1.08-3.46-3.23-3.56-3.43-.1-.2-1.08-1.53-1.08-2.92 0-1.39.73-2.07.97-2.31.25-.25.56-.3.74-.3h.52c.2 0 .42-.1.65.34.25.59.84 2 .9 2.15.08.15.15.35.05.6-.1.25-.15.4-.3.6-.15.2-.3.35-.45.5-.15.15-.32.33-.15.65.17.3.7 1.18 1.45 1.84.95.84 1.8 1.12 2.1 1.25.3.15.45.1.65-.05.15-.2.65-.75.85-1 .15-.25.35-.2.65-.1.3.1 1.8.85 2.1 1 .3.15.45.2.55.3.1.1.1.55-.1 1.07Z"/></svg> WhatsApp</a>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ── HERO ── -->
+    <div class="historia-hero section">
+      <a href="index.html" class="historia-back">Volver al inicio</a>
+      <p class="kicker">Mi trayectoria</p>
+      <h1 class="historia-hero-headline">Una historia de acci&oacute;n, visi&oacute;n y resultados.</h1>
+      <p class="historia-hero-sub">De Guayaquil, Ecuador. Empec&eacute; desde cero, con recursos limitados y una meta clara. Hoy dirijo dos marcas reales y asesoro empresas que quieren crecer de verdad.</p>
+    </div>
+
+    <!-- ── CHAPTERS ── -->
+    <div class="historia-chapters">
+
+      <!-- Cap&iacute;tulo 01 -->
+      <div class="historia-chapter reveal">
+        <div class="historia-imgs">
+          <div class="historia-img _01"><img src="assets/imagenpersonal1.webp" alt="Inicio profesional de Erlin Gonzalez" loading="lazy" /></div>
+          <div class="historia-img _02"><img src="assets/imagenpersonal2.webp" alt="Construcci&oacute;n de marca personal" loading="lazy" /></div>
+        </div>
+        <div class="historia-text">
+          <span class="historia-num">Cap&iacute;tulo 01 &middot; Inicio</span>
+          <h2>De cero, con visi&oacute;n clara</h2>
+          <p>Empec&eacute; desde cero, con recursos limitados y una meta clara: construir una carrera capaz de impactar marcas reales con marketing inteligente y ejecuci&oacute;n sin excusas.</p>
+        </div>
+      </div>
+
+      <!-- Cap&iacute;tulo 02 -->
+      <div class="historia-chapter flip reveal">
+        <div class="historia-imgs">
+          <div class="historia-img _01"><img src="assets/imagennegocio1.webp" alt="Escalamiento empresarial" loading="lazy" /></div>
+          <div class="historia-img _02"><img src="assets/imagenpersonalprincipal.webp" alt="Liderazgo profesional" loading="lazy" /></div>
+        </div>
+        <div class="historia-text">
+          <span class="historia-num">Cap&iacute;tulo 02 &middot; Escalamiento</span>
+          <h2>De operador a Estratega</h2>
+          <p>Con disciplina, formaci&oacute;n y ejecuci&oacute;n, pas&eacute; de operar solo a liderar equipos, procesos y estrategias para empresas tecnol&oacute;gicas en mi pa&iacute;s.</p>
+        </div>
+      </div>
+
+      <!-- Cap&iacute;tulo 03 -->
+      <div class="historia-chapter reveal">
+        <div class="historia-imgs">
+          <div class="historia-img _01"><img src="assets/imagenpersonal2.webp" alt="Etapa actual de Erlin" loading="lazy" /></div>
+          <div class="historia-img _02"><img src="assets/imagennegocio2.webp" alt="Empresa propia" loading="lazy" /></div>
+        </div>
+        <div class="historia-text">
+          <span class="historia-num">Cap&iacute;tulo 03 &middot; Hoy</span>
+          <h2>Due&ntilde;o, mentor y Estratega</h2>
+          <p>Hoy soy due&ntilde;o de dos empresas y trabajo como especialista en marketing, ayudando a marcas a ganar posicionamiento, autoridad y conversi&oacute;n.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ── CTA STRIP ── -->
+    <div class="historia-cta-strip reveal">
+      <h3>Lista para llevar tu marca al siguiente nivel.</h3>
+      <div class="hero-ctas">
+        <a class="btn btn-primary btn-large" href="https://wa.me/0000000000?text=Hola%20Erlin%2C%20quiero%20trabajar%20contigo" target="_blank" rel="noopener"><svg class="brand-icon" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor"><path d="M11.97 2A10 10 0 0 0 2 12c0 1.77.46 3.44 1.27 4.88L2 22l5.24-1.2A9.95 9.95 0 0 0 11.97 22A10 10 0 0 0 22 12A10 10 0 0 0 11.97 2M17.3 15.65c-.2.52-1.07 1-1.52 1.05-.4.04-.84.14-2.58-.58-2.1-1.08-3.46-3.23-3.56-3.43-.1-.2-1.08-1.53-1.08-2.92 0-1.39.73-2.07.97-2.31.25-.25.56-.3.74-.3h.52c.2 0 .42-.1.65.34.25.59.84 2 .9 2.15.08.15.15.35.05.6-.1.25-.15.4-.3.6-.15.2-.3.35-.45.5-.15.15-.32.33-.15.65.17.3.7 1.18 1.45 1.84.95.84 1.8 1.12 2.1 1.25.3.15.45.1.65-.05.15-.2.65-.75.85-1 .15-.25.35-.2.65-.1.3.1 1.8.85 2.1 1 .3.15.45.2.55.3.1.1.1.55-.1 1.07Z"/></svg> Hablar por WhatsApp</a>
+        <a class="btn btn-ghost" href="index.html#services">Ver servicios</a>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="site-footer">
+    <span class="footer-mark">Erlin Gonzalez</span>
+    <p>&copy; <span id="year"></span> &middot; Marca personal, estrategia y crecimiento digital.</p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

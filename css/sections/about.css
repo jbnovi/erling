@@ -1,0 +1,132 @@
+/* ========== ABOUT — portrait with styled frame (Dominicus-inspired) ========== */
+.about {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: clamp(3rem, 6vw, 7rem);
+  align-items: center;
+}
+
+/* Container creates the visual "frame" behind the cut-out PNG */
+.about-portrait-wrap {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.4), var(--shadow-card);
+}
+
+/* Rich gradient backdrop — warm gold emanating from bottom-left */
+.about-portrait-wrap::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse at 30% 110%, rgba(202, 162, 37, 0.30) 0%, transparent 60%),
+    radial-gradient(ellipse at 85% 5%,  rgba(202, 162, 37, 0.10) 0%, transparent 52%),
+    linear-gradient(165deg, var(--surface-2) 0%, var(--bg) 100%);
+}
+
+/* Top-right decorative accent corner */
+.about-portrait-wrap::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 48%;
+  height: 48%;
+  z-index: 0;
+  background: linear-gradient(225deg, rgba(202, 162, 37, 0.18) 0%, transparent 65%);
+}
+
+/* The PNG cut-out floats above the backdrop */
+.portrait-cutout {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 96%;
+  width: auto;
+  max-width: 115%;
+  object-fit: contain;
+  object-position: bottom center;
+  z-index: 1;
+  display: block;
+  filter: drop-shadow(0 20px 48px rgba(0, 0, 0, 0.6));
+}
+
+/* ---- Content column ---- */
+.about-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.about-content h2 {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: clamp(1.8rem, 3.5vw, 3.2rem);
+  text-transform: uppercase;
+  line-height: 0.93;
+  letter-spacing: 0.01em;
+  color: var(--text);
+}
+
+.about-content .lede {
+  color: var(--muted);
+  max-width: 50ch;
+}
+
+/* Verifiable facts list */
+.about-facts {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--line);
+  margin-top: 0.4rem;
+}
+
+.about-fact {
+  display: flex;
+  flex-direction: column;
+  gap: 0.18rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.about-fact strong {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 1.4rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.about-fact span {
+  font-size: 0.8rem;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 900px) {
+  .about {
+    grid-template-columns: 1fr;
+    gap: 2.4rem;
+  }
+
+  .about-portrait-wrap {
+    aspect-ratio: 3 / 3.2;
+    max-width: 380px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-portrait-wrap {
+    max-width: 100%;
+    aspect-ratio: 3 / 3.6;
+  }
+}

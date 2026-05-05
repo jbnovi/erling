@@ -1,0 +1,99 @@
+body {
+  color: var(--text);
+  line-height: 1.55;
+  font-family: "Manrope", system-ui, sans-serif;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  line-height: 0.92;
+  font-family: "Bebas Neue", "Manrope", sans-serif;
+  letter-spacing: 0.005em;
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: clamp(2.2rem, 5vw, 4.4rem);
+  letter-spacing: 0.01em;
+}
+
+h2 {
+  font-size: clamp(1.7rem, 3.2vw, 2.9rem);
+  letter-spacing: 0.015em;
+}
+
+h3 {
+  font-family: "Manrope", sans-serif;
+  font-size: clamp(1.05rem, 1.4vw, 1.4rem);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.22;
+}
+
+p {
+  margin: 0;
+}
+
+/* === Display utilities (Iman-style massive type) === */
+.display {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: clamp(3rem, 7vw, 6.5rem);
+  line-height: 0.87;
+  letter-spacing: 0.005em;
+  text-transform: uppercase;
+}
+
+.display-xl {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: clamp(3.5rem, 8.5vw, 8rem);
+  line-height: 0.85;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.all-caps {
+  text-transform: uppercase;
+}
+
+.text-weight-semibold {
+  font-weight: 600;
+}
+
+.kicker {
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 0.72rem;
+  margin: 0 0 1.2rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.kicker::before {
+  content: "";
+  width: 28px;
+  height: 1px;
+  background: var(--accent);
+}
+
+.lede {
+  color: var(--muted);
+  font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+  line-height: 1.55;
+  max-width: 60ch;
+}
+
+.eyebrow-num {
+  font-family: "Bebas Neue", sans-serif;
+  color: var(--muted-2);
+  font-size: 0.95rem;
+  letter-spacing: 0.18em;
+}

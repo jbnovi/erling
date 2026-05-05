@@ -1,0 +1,46 @@
+.media-grid {
+  display: grid;
+  gap: clamp(1rem, 1.6vw, 1.4rem);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.media-card {
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.015);
+  transition: border-color 0.3s ease;
+}
+
+.media-card:hover { border-color: rgba(255, 255, 255, 0.18); }
+
+.media-thumb {
+  aspect-ratio: 9 / 12;
+  width: 100%;
+  object-fit: cover;
+  border-bottom: 1px solid var(--line);
+  transition: transform 1s ease;
+}
+
+.media-card:hover .media-thumb { transform: scale(1.05); }
+
+.media-card-body {
+  padding: clamp(1.2rem, 2vw, 1.8rem);
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  flex: 1;
+}
+
+.media-card h3 {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: clamp(1.4rem, 2.2vw, 1.9rem);
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.media-card p { color: var(--muted); font-size: 0.95rem; flex: 1; }

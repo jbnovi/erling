@@ -1,0 +1,28 @@
+:root {
+  /* Palette — 2026 Minimalist Dark + Gold Accent */
+  --bg: #050505;
+  --bg-alt: #0a0a0a;
+  --surface: #0d0d0d;
+  --surface-2: #141414;
+  --text: #f9f9f9;
+  --muted: #a1a1aa;
+  --muted-2: #71717a;
+  --line: rgba(255, 255, 255, 0.05);
+  --line-strong: rgba(255, 255, 255, 0.12);
+  --accent: #caa225;
+  --accent-2: #e0bb40;
+  --accent-soft: rgba(202, 162, 37, 0.10);
+
+  /* Layout */
+  --max: 1440px;
+  --max-narrow: 1100px;
+  --max-text: 64ch;
+  --gutter: clamp(1.25rem, 5vw, 5rem);
+  --section-y: clamp(5rem, 11vw, 11rem);
+
+  --radius: 18px;
+  --radius-lg: 28px;
+  --radius-xl: 40px;
+  --shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+  --shadow-card: 0 40px 120px rgba(0, 0, 0, 0.55);
+}

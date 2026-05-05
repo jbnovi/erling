@@ -1,0 +1,84 @@
+.companies-stack {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2rem, 4vw, 4rem);
+}
+
+.pill-row.spread {
+  justify-content: flex-start;
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+}
+
+/* Editorial company rows */
+.company-row {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: center;
+  padding-block: clamp(2.5rem, 5vw, 5rem);
+  border-top: 1px solid var(--line);
+}
+
+.company-row.flip { grid-template-columns: 1.1fr 0.9fr; }
+.company-row.flip .company-visual-wrap { order: 2; }
+.company-row.flip .company-text { order: 1; }
+
+.company-visual-wrap {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+.company-visual-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1s ease;
+}
+
+.company-visual-wrap:hover img { transform: scale(1.05); }
+
+.company-tag {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.45rem 0.8rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.company-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.company-text h3 {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: clamp(2.4rem, 5vw, 4.5rem);
+  text-transform: uppercase;
+  font-weight: 600;
+  line-height: 0.95;
+}
+
+.company-text p {
+  color: var(--muted);
+  font-size: clamp(1rem, 1.2vw, 1.15rem);
+  max-width: 55ch;
+  line-height: 1.65;
+}
+
+.company-text a {
+  margin-top: 0.6rem;
+  align-self: flex-start;
+}

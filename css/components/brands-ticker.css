@@ -1,0 +1,89 @@
+/* ========== BRANDS TICKER — infinite scroll marquee ========== */
+.brands-ticker {
+  width: 100vw;
+  margin-inline: calc(50% - 50vw);
+  overflow: hidden;
+  border-block: 1px solid var(--line);
+  background: var(--bg);
+  padding-block: 0;
+}
+
+.brands-ticker-track {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  width: max-content;
+  animation: brandsTicker 52s linear infinite;
+}
+
+.brands-ticker-track:hover {
+  animation-play-state: paused;
+}
+
+/* mask fade on edges */
+.brands-ticker::before,
+.brands-ticker::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: clamp(60px, 10vw, 140px);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.brands-ticker {
+  position: relative;
+}
+
+.brands-ticker::before {
+  left: 0;
+  background: linear-gradient(to right, var(--bg) 0%, transparent 100%);
+}
+
+.brands-ticker::after {
+  right: 0;
+  background: linear-gradient(to left, var(--bg) 0%, transparent 100%);
+}
+
+.brands-ticker-item {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.brands-ticker-name {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: clamp(1.8rem, 3.5vw, 3.2rem);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text);
+  padding-inline: clamp(2rem, 5vw, 5rem);
+  opacity: 0.92;
+  transition: opacity 0.3s ease, color 0.3s ease;
+}
+
+.brands-ticker-name:hover {
+  opacity: 1;
+  color: var(--accent);
+}
+
+/* diamond separator */
+.brands-ticker-sep {
+  color: var(--accent);
+  font-size: clamp(0.7rem, 1.2vw, 1rem);
+  opacity: 0.7;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+@keyframes brandsTicker {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brands-ticker-track { animation: none; }
+}

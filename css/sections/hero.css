@@ -1,0 +1,221 @@
+/* ========== HERO — Framer-style: retrato centrado, texto arriba/abajo ========== */
+.hero {
+  position: relative;
+  min-height: calc(100svh - 70px); /* Ajustado por el header */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end; /* Empuja contenido al fondo para el retrato */
+  padding-block: clamp(2rem, 4vw, 3rem) 0; /* Reducido drásticamente para eliminar espacio muerto arriba */
+  padding-inline: var(--gutter);
+  overflow: hidden;
+  background: var(--bg);
+}
+
+/* Eliminamos gradiente superior oscuro para que el texto brillante resalte al fondo */
+
+/* Gradiente inferior para suavizar pies del retrato */
+.hero::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  inset-inline: 0;
+  height: 22%;
+  background: linear-gradient(to top, var(--bg) 0%, transparent 100%);
+  z-index: 5;
+  pointer-events: none;
+}
+
+/* Resplandor dorado ultra-suave bajo el retrato (Ambient blur) */
+.hero-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: clamp(300px, 60vw, 800px);
+  height: clamp(300px, 60vw, 800px);
+  background: radial-gradient(circle at center,
+    rgba(202, 162, 37, 0.15) 0%,
+    transparent 65%);
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ---- Retrato: normal flow en flex, empujado al borde inferior ---- */
+.hero-portrait {
+  position: relative;
+  width: clamp(260px, 38vw, 540px); /* Tamaño del retrato un poco más controlado */
+  margin-inline: auto;
+  z-index: 2;
+  pointer-events: none;
+  line-height: 0;
+  order: 2; /* DOM order para estar DEBAJO del hero-top visualmente en el layout flex */
+}
+
+.hero-portrait img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  object-position: bottom center;
+  filter: drop-shadow(0 20px 42px rgba(0, 0, 0, 0.70));
+}
+
+/* ---- Grupo superior: tag + nombre + rol rotatorio ---- */
+.hero-top {
+  position: relative;
+  z-index: 4; /* Ahora está ARRIBA de la imagen (z-index) y en flex (order: 1) sin chocar */
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  padding-top: 0; /* padding reset */
+  margin-bottom: auto; /* Flex trick: Push the portrait completely to the bottom! */
+  margin-top: 0; /* Eliminamos el margin-top para pegarlo más a la barra */
+  order: 1; /* Cae de primero de arriba hacia abajo */
+}
+
+.hero-tag {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.28em;
+  color: var(--accent);
+  text-transform: uppercase;
+}
+
+.hero-display {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: clamp(2.4rem, 6vw, 4.6rem); /* Letras más pequeñas a petición de 3 líneas fluidas */
+  line-height: 0.9;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  background: linear-gradient(170deg, var(--text) 30%, var(--accent) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin: 0;
+}
+
+/* Rol rotatorio animado */
+.hero-rotate-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  overflow: hidden;
+  height: 1.6em;
+}
+
+.hero-rotate-wrap::before,
+.hero-rotate-wrap::after {
+  content: "";
+  width: 28px;
+  height: 1px;
+  background: var(--accent);
+  flex-shrink: 0;
+  opacity: 0.6;
+}
+
+.hero-rotate {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: clamp(0.8rem, 1.1vw, 1rem);
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: inline-block;
+  will-change: transform, opacity;
+}
+
+.hero-rotate.slide-in {
+  animation: heroSlideIn 0.42s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.hero-rotate.slide-out {
+  animation: heroSlideOut 0.32s ease-in forwards;
+}
+
+@keyframes heroSlideIn {
+  from { transform: translateY(110%); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+@keyframes heroSlideOut {
+  from { transform: translateY(0);     opacity: 1; }
+  to   { transform: translateY(-110%); opacity: 0; }
+}
+
+/* ---- Grupo inferior: subtítulo + CTAs ---- */
+.hero-bottom {
+  position: absolute; /* Para que quede superpuesto al pecho/saco de la foto como en la referencia */
+  bottom: clamp(2rem, 5vw, 4rem);
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 2 * var(--gutter));
+  z-index: 6; /* Siempre al frente de la imagen para ser clickeable */
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.hero-bottom h2 {
+  font-family: "Manrope", sans-serif;
+  font-size: clamp(0.84rem, 1.2vw, 1.05rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  line-height: 1.25;
+  color: var(--text);
+  max-width: 44ch;
+}
+
+.hero-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  justify-content: center;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 768px) {
+  .hero {
+    padding-block: 2rem 0;
+  }
+
+  .hero-top {
+    margin-top: 0;
+  }
+
+  .hero-portrait {
+    width: min(85vw, 360px);
+  }
+
+  .hero-display { font-size: clamp(2.4rem, 11vw, 4rem); }
+
+  .hero-glow { width: 100%; filter: blur(60px); }
+}
+
+/* ========== NAMEPLATE ========== */
+.nameplate {
+  text-align: center;
+  border-block: 1px solid var(--line);
+  background: linear-gradient(180deg, rgba(202, 162, 37, 0.04), transparent);
+}
+
+.nameplate .display-xl {
+  background: linear-gradient(180deg, var(--text) 0%, rgba(202, 162, 37, 0.4) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-weight: 600;
+}
+
+.nameplate p {
+  color: var(--muted);
+  margin-top: 1rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+}
